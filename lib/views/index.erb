@@ -1,0 +1,16 @@
+<h1>pi-queue</h1>
+<h2>priority-idea-queue</h2>
+<%= Project.all.inject('') {|str,i| str += "#{i.to_s}<br />"} %>
+
+<form name="create_new_project" method="post">
+Name:              <input type="text" name="post[project_name]" /><br />
+Short Description: <input type="text" name="post[desc]" /><br />
+Problems/Tech:     <input type="text" name="post[probs_techs]" /><br />
+Submitter:         <input type="text" name="post[submitter]" /><br />
+Description:       <br />
+<textarea name="post[long_desc]">
+
+</textarea><br />
+<input type="submit" value="Submit" />
+<input type="button" value="Cancel" />
+</form>
