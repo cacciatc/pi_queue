@@ -2,33 +2,46 @@ require File.dirname(__FILE__) + '/spec_helper'
 
 describe "pi-queue page" do
   include Rack::Test::Methods
-  def setup
- 
-  end
-  
   def app
     @app ||= Sinatra::Application
   end
   
   it "should have a list of implemented projects" do
-    pending
+    get '/'
+    Hpricot(last_response.body).search("table[@name='implemented_projects']").should_not == nil
   end
   
   it "should have a list of deleted projects" do
-    pending
+    get '/'
+    Hpricot(last_response.body).search("table[@name='deleted_projects']").should_not == nil
   end
   
   it "should have a list of pending projects" do
-    pending
+    get '/'
+    Hpricot(last_response.body).search("table[@name='pending_projects']").should_not == nil
   end
   
   it "should have a current project" do
-    pending
+    get '/'
+    Hpricot(last_response.body).search("table[@name='current_project']").should_not == nil
   end
   
   it "should allow a user to add a new project" do
     get '/'
-    Hpricot(last_response.body).search("form[@name='create_new_project']").should_not == ""
+    Hpricot(last_response.body).search("form[@name='create_new_project']").should_not == nil
+  end
+  
+  it "should allow a user to delete an existing pending project" do
+    #get '/'
+    #Hpricot(last_response.body).search("form[@name='delete_pending_project']").first.should_not == ""
+  end
+  
+  it "should allow a user to move a pending project up in rank" do
+    pending
+  end
+  
+  it "should allow a user to undelete a deleted project" do
+    pending
   end
   
   it "should use basic HTTP authentication" do

@@ -1,6 +1,57 @@
 <h1>pi-queue</h1>
 <h2>priority-idea-queue</h2>
-<%= Project.all.inject('') {|str,i| str += "#{i.to_s}<br />"} %>
+
+<h2>Current Project</h2>
+<%= 
+  Project.current.inject('<table name=\"current_project\">') do |str,p| 
+    str += "<tr>
+            <td>#{p.rank}</td>
+            <td>#{p.name}</td>
+            <td>#{p.desc}</td>
+            <td>#{p.submitter}</td>
+            <td>#{p.created_at.asctime}</td>
+            </tr>"
+  end + '</table>'
+%>
+
+<h2>Pending Projects</h2>
+<%= 
+  Project.list_pending.inject('<table name=\"pending_projects\">') do |str,p| 
+    str += "<tr>
+            <td>#{p.rank}</td>
+            <td>#{p.name}</td>
+            <td>#{p.desc}</td>
+            <td>#{p.submitter}</td>
+            <td>#{p.created_at.asctime}</td>
+            </tr>"
+  end + '</table>'
+%>
+
+<h2>Implemented Projects</h2>
+<%= 
+  Project.list_implemented.inject('<table name=\"implemented_projects\">') do |str,p| 
+    str += "<tr>
+            <td>#{p.rank}</td>
+            <td>#{p.name}</td>
+            <td>#{p.desc}</td>
+            <td>#{p.submitter}</td>
+            <td>#{p.created_at.asctime}</td>
+            </tr>"
+  end + '</table>'
+%>
+
+<h2>Deleted Projects</h2>
+<%= 
+  Project.list_deleted.inject('<table name=\"deleted_projects\">') do |str,p| 
+    str += "<tr>
+            <td>#{p.rank}</td>
+            <td>#{p.name}</td>
+            <td>#{p.desc}</td>
+            <td>#{p.submitter}</td>
+            <td>#{p.created_at.asctime}</td>
+            </tr>"
+  end + '</table>'
+%>
 
 <form name="create_new_project" method="post">
 Name:              <input type="text" name="post[project_name]" /><br />
@@ -9,8 +60,7 @@ Problems/Tech:     <input type="text" name="post[probs_techs]" /><br />
 Submitter:         <input type="text" name="post[submitter]" /><br />
 Description:       <br />
 <textarea name="post[long_desc]">
-
 </textarea><br />
 <input type="submit" value="Submit" />
-<input type="button" value="Cancel" />
+<input type="reset" value="Cancel" />
 </form>
