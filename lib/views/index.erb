@@ -23,6 +23,7 @@
             <td>#{p.desc}</td>
             <td>#{p.submitter}</td>
             <td>#{p.created_at.asctime}</td>
+            <td><form name=\"delete_pending_project\" method=\"post\" action=\"delete\\#{p.mid}\"><input type=\"submit\" value=\"Delete\" /></form></td>
             </tr>"
   end + '</table>'
 %>
@@ -44,11 +45,12 @@
 <%= 
   Project.list_deleted.inject('<table name=\"deleted_projects\">') do |str,p| 
     str += "<tr>
-            <td>#{p.rank}</td>
+            <td></td>
             <td>#{p.name}</td>
             <td>#{p.desc}</td>
             <td>#{p.submitter}</td>
             <td>#{p.created_at.asctime}</td>
+            <td><form name=\"restore_pending_project\" method=\"post\" action=\"restore\\#{p.mid}\"><input type=\"submit\" value=\"Restore\" /></form></td>
             </tr>"
   end + '</table>'
 %>
