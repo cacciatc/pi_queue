@@ -49,4 +49,10 @@ describe "pi-queue page" do
     get '/protected'
     last_response.status.should == 401
   end
+  
+  it "should allow users to move rows from pending to deleted"
+  it "should allow users to move rows from deleted to pending"
+  it "should allow users to implement the current project"
+  it "should have some css to make things pretty"
+  it "should have a nice logo in a header picture"
 end
