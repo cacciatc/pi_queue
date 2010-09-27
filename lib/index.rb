@@ -42,6 +42,13 @@ configure do
     end
   end
   DataMapper.auto_upgrade!
+  
+  #Project.new(:rank=>Project.count_pending+1,:name=>'test1').save
+  #Project.new(:rank=>Project.count_pending+1,:name=>'test2').save
+  #Project.new(:rank=>Project.count_pending+1,:name=>'test3').save
+  #Project.new(:rank=>Project.count_pending+1,:name=>'test4',:is_deleted=>true).save
+  #Project.new(:rank=>Project.count_pending+1,:name=>'test5',:is_implemented=>true).save
+  #Project.new(:rank=>Project.count_pending+1,:name=>'test6').save
 end
 
 use Rack::Auth::Basic do |username, password|
@@ -52,20 +59,46 @@ get '/' do
   erb :index
 end
 
-post '/delete/:mid' do |mid|
-  p = Project.get(mid.to_i)
-  Project.shift_rank_once_after(p.rank)
-  p.is_deleted = true
-  p.rank = -1
-  p.update
-  redirect '/'
+post '/update_rank' do
+  params['data'].split('&').inject(rank = 2) do |rank,item|
+    mid = item.split('=').last.to_i
+    p = Project.get(mid)
+    p.rank = rank
+    p.is_deleted     = false
+    p.is_implemented = false
+    p.update
+    rank += 1
+  end
 end
 
-post '/restore/:mid' do |mid|
-  p = Project.get(mid.to_i)
-  p.is_deleted = false
-  p.rank = Project.count_pending+1
+post '/update_implemented' do
+  params['data'].split('&').each do |item|
+    mid = item.split('=').last.to_i
+    p = Project.get(mid)
+    p.rank = -1
+    p.is_deleted     = false
+    p.is_implemented = true
+    p.update
+  end
+end
+
+post '/update_deleted' do
+  params['data'].split('&').each do |item|
+    mid = item.split('=').last.to_i
+    p = Project.get(mid)
+    p.rank = -1
+    p.is_deleted     = true
+    p.is_implemented = false
+    p.update
+  end
+end
+
+post '/update_current' do
+  p = Project.all(:rank => 1).first
+  p.is_implemented = true
+  p.rank = -1
   p.update
+  Project.shift_rank_once_after(1)
   redirect '/'
 end
 

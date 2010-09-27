@@ -1,59 +1,75 @@
+<head>
+  <script src="js/prototype.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/builder.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/effects.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/dragdrop.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
 <h1>pi-queue</h1>
 <h2>priority-idea-queue</h2>
 
 <h2>Current Project</h2>
 <%= 
-  Project.current.inject('<table name=\"current_project\">') do |str,p| 
-    str += "<tr>
-            <td>#{p.rank}</td>
-            <td>#{p.name}</td>
-            <td>#{p.desc}</td>
-            <td>#{p.submitter}</td>
-            <td>#{p.created_at.asctime}</td>
-            </tr>"
-  end + '</table>'
+  Project.current.inject('<ul id="current_project">') do |str,p| 
+    str += "<li id=\"#{p.mid}\">#{p.name} #{p.desc} #{p.submitter} #{p.created_at.asctime} <form name=\"implement\" action=\"update_current\" method=\"post\"><input type=\"submit\" value=\"Implement\" /></form></li>"
+  end + '</ul>'
 %>
 
 <h2>Pending Projects</h2>
 <%= 
-  Project.list_pending.inject('<table name=\"pending_projects\">') do |str,p| 
-    str += "<tr>
-            <td>#{p.rank}</td>
-            <td>#{p.name}</td>
-            <td>#{p.desc}</td>
-            <td>#{p.submitter}</td>
-            <td>#{p.created_at.asctime}</td>
-            <td><form name=\"delete_pending_project\" method=\"post\" action=\"delete\\#{p.mid}\"><input type=\"submit\" value=\"Delete\" /></form></td>
-            </tr>"
-  end + '</table>'
+  Project.list_pending.inject('<ul id="pending_projects">') do |str,p| 
+    str += "<li id=\"pending_#{p.mid}\">#{p.name} #{p.desc} #{p.submitter} #{p.created_at.asctime}</li>"
+  end +"<br \></ul>"
 %>
 
 <h2>Implemented Projects</h2>
 <%= 
-  Project.list_implemented.inject('<table name=\"implemented_projects\">') do |str,p| 
-    str += "<tr>
-            <td>#{p.rank}</td>
-            <td>#{p.name}</td>
-            <td>#{p.desc}</td>
-            <td>#{p.submitter}</td>
-            <td>#{p.created_at.asctime}</td>
-            </tr>"
-  end + '</table>'
+  Project.list_implemented.inject('<ul id="implemented_projects">') do |str,p| 
+    str += "<li id=\"implemented_#{p.mid}\">#{p.name} #{p.desc} #{p.submitter} #{p.created_at.asctime}</li>"
+  end +"<br \></ul>"
 %>
 
 <h2>Deleted Projects</h2>
 <%= 
-  Project.list_deleted.inject('<table name=\"deleted_projects\">') do |str,p| 
-    str += "<tr>
-            <td></td>
-            <td>#{p.name}</td>
-            <td>#{p.desc}</td>
-            <td>#{p.submitter}</td>
-            <td>#{p.created_at.asctime}</td>
-            <td><form name=\"restore_pending_project\" method=\"post\" action=\"restore\\#{p.mid}\"><input type=\"submit\" value=\"Restore\" /></form></td>
-            </tr>"
-  end + '</table>'
+  Project.list_deleted.inject('<ul id="deleted_projects">') do |str,p| 
+    str += "<li id=\"deleted_#{p.mid}\">#{p.name} #{p.desc} #{p.submitter} #{p.created_at.asctime}</li>"
+  end +"<br \></ul>"
 %>
+
+<script type="text/javascript" charset="utf-8">
+  Sortable.create('pending_projects', {
+   containment: ["implemented_projects","deleted_projects","pending_projects"],
+   dropOnEmpty: true,
+   onUpdate: function() {
+      new Ajax.Request("/update_rank", {
+          method: "post",
+          parameters: { data: Sortable.serialize('pending_projects') }
+      });
+    }
+  }
+  );
+  Sortable.create("implemented_projects", {
+   containment: ["implemented_projects","deleted_projects","pending_projects"],
+   dropOnEmpty: true,
+   onUpdate: function() {
+      new Ajax.Request("/update_implemented", {
+          method: "post",
+          parameters: { data: Sortable.serialize('implemented_projects') }
+      });
+    }
+  });
+  Sortable.create("deleted_projects", {
+   containment: ["implemented_projects","deleted_projects","pending_projects"],
+    dropOnEmpty: true,
+   onUpdate: function() {
+      new Ajax.Request("/update_deleted", {
+          method: "post",
+          parameters: { data: Sortable.serialize('deleted_projects') }
+      });
+    }
+  }
+  );
+</script>
 
 <form name="create_new_project" method="post">
 Name:              <input type="text" name="post[project_name]" /><br />

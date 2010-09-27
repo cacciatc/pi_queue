@@ -6,44 +6,24 @@ describe "pi-queue page" do
     @app ||= Sinatra::Application
   end
   
-  it "should have a list of implemented projects" do
-    get '/'
-    Hpricot(last_response.body).search("table[@name='implemented_projects']").should_not == [].empty?
-  end
+  it "should have a list of implemented projects"
   
-  it "should have a list of deleted projects" do
-    get '/'
-    Hpricot(last_response.body).search("table[@name='deleted_projects']").should_not == [].empty?
-  end
+  it "should have a list of deleted projects"
   
-  it "should have a list of pending projects" do
-    get '/'
-    Hpricot(last_response.body).search("table[@name='pending_projects']").should_not == [].empty?
-  end
+  it "should have a list of pending projects"
   
-  it "should have a current project" do
-    get '/'
-    Hpricot(last_response.body).search("table[@name='current_project']").should_not == [].empty?
-  end
+  it "should have a current project"
   
   it "should allow a user to add a new project" do
     get '/'
     Hpricot(last_response.body).search("form[@name='create_new_project']").should_not == [].empty?
   end
   
-  it "should allow a user to delete an existing pending project" do
-    get '/'
-    Hpricot(last_response.body).search("form[@name=\"delete_pending_project\"]").should_not == [].empty?
-  end
+  it "should allow a user to delete an existing pending project"
   
-  it "should allow a user to move a pending project up in rank" do
-    pending
-  end
+  it "should allow a user to move a pending project up in rank"
   
-  it "should allow a user to undelete a deleted project" do
-    get '/'
-    Hpricot(last_response.body).search("form[@name=\"restore_pending_project\"]").should_not == [].empty?
-  end
+  it "should allow a user to undelete a deleted project"
   
   it "should use basic HTTP authentication" do
     get '/protected'
