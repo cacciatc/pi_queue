@@ -13,6 +13,7 @@ configure do
     property :long_desc, String
     property :submitter, String
     property :probs_techs,String
+    property :url, String
     property :rank, Integer
     property :created_at, DateTime
     
@@ -43,12 +44,12 @@ configure do
   end
   DataMapper.auto_upgrade!
   
-  #Project.new(:rank=>Project.count_pending+1,:name=>'test1').save
-  #Project.new(:rank=>Project.count_pending+1,:name=>'test2').save
-  #Project.new(:rank=>Project.count_pending+1,:name=>'test3').save
-  #Project.new(:rank=>Project.count_pending+1,:name=>'test4',:is_deleted=>true).save
-  #Project.new(:rank=>Project.count_pending+1,:name=>'test5',:is_implemented=>true).save
-  #Project.new(:rank=>Project.count_pending+1,:name=>'test6').save
+  Project.new(:rank=>Project.count_pending+1,:name=>'test1').save
+  Project.new(:rank=>Project.count_pending+1,:name=>'test2').save
+  Project.new(:rank=>Project.count_pending+1,:name=>'test3').save
+  Project.new(:rank=>Project.count_pending+1,:name=>'test4',:is_deleted=>true).save
+  Project.new(:rank=>Project.count_pending+1,:name=>'test5',:is_implemented=>true).save
+  Project.new(:rank=>Project.count_pending+1,:name=>'test6').save
 end
 
 use Rack::Auth::Basic do |username, password|
@@ -104,6 +105,6 @@ end
 
 post '/' do
   p = params['post']
-  Project.new(:rank=>Project.count_pending+1, :name=>p['project_name'],:desc=>p['desc'],:long_desc=>p['long_desc'],:probs_techs=>p['probs_techs'],:submitter=>p['submitter']).save
+  Project.new(:rank=>Project.count_pending+1, :name=>p['project_name'],:desc=>p['desc'],:long_desc=>p['long_desc'],:probs_techs=>p['probs_techs'],:submitter=>p['submitter'],:url=>p['url']).save
   redirect '/'
 end

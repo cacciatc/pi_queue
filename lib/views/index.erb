@@ -1,4 +1,7 @@
 <head>
+  <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print">	
+  <!--[if lt IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
   <script src="js/prototype.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/builder.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/effects.js" type="text/javascript" charset="utf-8"></script>
@@ -11,30 +14,31 @@
 <h2>Current Project</h2>
 <%= 
   Project.current.inject('<ul id="current_project">') do |str,p| 
-    str += "<li id=\"#{p.mid}\">#{p.name} #{p.desc} #{p.submitter} #{p.created_at.asctime} <form name=\"implement\" action=\"update_current\" method=\"post\"><input type=\"submit\" value=\"Implement\" /></form></li>"
+    str += "<li id=\"#{p.mid}\">#{p.name} #{p.desc} #{p.url} #{p.submitter} #{p.created_at.asctime} <form name=\"implement\" action=\"update_current\" method=\"post\"><input type=\"submit\" value=\"Implement\" /></form></li>"
   end + '</ul>'
 %>
 
 <h2>Pending Projects</h2>
 <%= 
   Project.list_pending.inject('<ul id="pending_projects">') do |str,p| 
-    str += "<li id=\"pending_#{p.mid}\">#{p.name} #{p.desc} #{p.submitter} #{p.created_at.asctime}</li>"
+    str += "<li id=\"pending_#{p.mid}\">#{p.name} #{p.desc} #{p.url} #{p.submitter} #{p.created_at.asctime}</li>"
   end +"<br \></ul>"
 %>
 
 <h2>Implemented Projects</h2>
 <%= 
   Project.list_implemented.inject('<ul id="implemented_projects">') do |str,p| 
-    str += "<li id=\"implemented_#{p.mid}\">#{p.name} #{p.desc} #{p.submitter} #{p.created_at.asctime}</li>"
+    str += "<li id=\"implemented_#{p.mid}\">#{p.name} #{p.desc} #{p.url} #{p.submitter} #{p.created_at.asctime}</li>"
   end +"<br \></ul>"
 %>
 
 <h2>Deleted Projects</h2>
 <%= 
   Project.list_deleted.inject('<ul id="deleted_projects">') do |str,p| 
-    str += "<li id=\"deleted_#{p.mid}\">#{p.name} #{p.desc} #{p.submitter} #{p.created_at.asctime}</li>"
+    str += "<li id=\"deleted_#{p.mid}\">#{p.name} #{p.desc} #{p.url} #{p.submitter} #{p.created_at.asctime}</li>"
   end +"<br \></ul>"
 %>
+
 
 <script type="text/javascript" charset="utf-8">
   Sortable.create('pending_projects', {
@@ -74,6 +78,7 @@
 <form name="create_new_project" method="post">
 Name:              <input type="text" name="post[project_name]" /><br />
 Short Description: <input type="text" name="post[desc]" /><br />
+URL:               <input type="text" name="post[url]" /><br />
 Problems/Tech:     <input type="text" name="post[probs_techs]" /><br />
 Submitter:         <input type="text" name="post[submitter]" /><br />
 Description:       <br />
