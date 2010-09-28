@@ -3,7 +3,7 @@ require 'sinatra'
 require 'datamapper'
 
 configure do
-  DataMapper.setup(:default, 'sqlite3::memory:')
+  DataMapper.setup(:default, 'mediocre_scrpr09:90.3kdvsfm@localhost/projectsdb')
   class Project
     include DataMapper::Resource
     
@@ -43,17 +43,10 @@ configure do
     end
   end
   DataMapper.auto_upgrade!
-  
-  Project.new(:rank=>Project.count_pending+1,:name=>'test1').save
-  Project.new(:rank=>Project.count_pending+1,:name=>'test2').save
-  Project.new(:rank=>Project.count_pending+1,:name=>'test3').save
-  Project.new(:rank=>Project.count_pending+1,:name=>'test4',:is_deleted=>true).save
-  Project.new(:rank=>Project.count_pending+1,:name=>'test5',:is_implemented=>true).save
-  Project.new(:rank=>Project.count_pending+1,:name=>'test6').save
 end
 
 use Rack::Auth::Basic do |username, password|
-  [username, password] == ['admin', 'admin']
+  [username, password] == ['roman', 'colonies25']
 end
 
 get '/' do
