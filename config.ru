@@ -1,3 +1,3 @@
-require 'lib\index'
+require 'index'
 
 run Sinatra::Application
