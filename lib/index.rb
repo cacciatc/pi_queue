@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'datamapper'
 
+class MySinatraApp < Sinatra::Application
 configure do
   DataMapper.setup(:default, 'mediocre_scrpr09:90.3kdvsfm@localhost/projectsdb')
   class Project
@@ -100,4 +101,5 @@ post '/' do
   p = params['post']
   Project.new(:rank=>Project.count_pending+1, :name=>p['project_name'],:desc=>p['desc'],:long_desc=>p['long_desc'],:probs_techs=>p['probs_techs'],:submitter=>p['submitter'],:url=>p['url']).save
   redirect '/'
+end
 end
