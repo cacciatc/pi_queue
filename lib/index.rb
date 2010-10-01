@@ -38,7 +38,7 @@ configure do
     def self.shift_rank_once_after(rank)
       all(:rank.gt => rank).each do |p|
         p.rank -= 1
-        p.update
+        p.save
       end
     end
   end
