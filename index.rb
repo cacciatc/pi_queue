@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'datamapper'
+require 'dm-postgres-adapter'
 
 configure do
   class Project
