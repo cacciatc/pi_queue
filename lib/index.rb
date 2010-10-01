@@ -60,7 +60,7 @@ post '/update_rank' do
     p.rank = rank
     p.is_deleted     = false
     p.is_implemented = false
-    p.update
+    p.save
     rank += 1
   end
 end
@@ -72,7 +72,7 @@ post '/update_implemented' do
     p.rank = -1
     p.is_deleted     = false
     p.is_implemented = true
-    p.update
+    p.save
   end
 end
 
@@ -83,7 +83,7 @@ post '/update_deleted' do
     p.rank = -1
     p.is_deleted     = true
     p.is_implemented = false
-    p.update
+    p.save
   end
 end
 
@@ -91,7 +91,7 @@ post '/update_current' do
   p = Project.all(:rank => 1).first
   p.is_implemented = true
   p.rank = -1
-  p.update
+  p.save
   Project.shift_rank_once_after(1)
   redirect '/'
 end
