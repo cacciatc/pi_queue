@@ -1,11 +1,11 @@
-#require 'rubygems'
+require 'rubygems'
 require 'sinatra'
 require 'datamapper'
 
 configure do
   class Project
     include DataMapper::Resource
-    
+    DataMapper.setup(:default, 'postgres://localhost/pi_projects')
     property :mid, Serial
     property :name, String
     property :desc, String
