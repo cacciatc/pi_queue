@@ -7,13 +7,12 @@ configure do
   class Project
     include DataMapper::Resource
     DataMapper.setup(:default, ENV['DATABASE_URL'])
-    DataMapper::Logger.new($stdout, :debug)
     property :mid, Serial
     property :name, String    
     property :desc, String     
-    property :long_desc, String
+    property :long_desc, Text
     property :submitter, String
-    property :probs_techs,String
+    property :probs_techs,Text
     property :url, String
     property :rank, Integer
     property :created_at, DateTime
@@ -43,7 +42,7 @@ configure do
       end
     end
   end
-  DataMapper.auto_upgrade!
+  DataMapper.auto_migrate!
 end
 
 use Rack::Auth::Basic do |username, password|
