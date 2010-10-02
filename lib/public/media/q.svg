@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="35"
+   height="39.650002"
+   id="svg2391"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   sodipodi:docname="q.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   version="1.0">
+  <defs
+     id="defs2393">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective2399" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="375"
+     inkscape:cy="520"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="640"
+     inkscape:window-height="669"
+     inkscape:window-x="115"
+     inkscape:window-y="115" />
+  <metadata
+     id="metadata2396">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-674.64286,-986.8229)">
+    <path
+       d="M 706.89286,1026.4729 L 701.39286,1022.2229 C 699.04286,1023.7229 695.94286,1024.6229 692.14286,1024.6229 C 678.74286,1024.6229 674.64286,1013.4729 674.64286,1005.7229 C 674.64286,997.9729 678.74286,986.8229 692.14286,986.8229 C 705.54286,986.8229 709.64286,997.9729 709.64286,1005.7229 C 709.64286,1010.2729 708.24286,1015.9229 704.44286,1019.7729 L 709.34286,1023.5729 L 706.89286,1026.4729 z M 696.14286,1013.2729 L 700.69286,1016.8229 C 703.24286,1014.2729 704.64286,1010.3229 704.64286,1005.7229 C 704.64286,997.2729 699.94286,991.1229 692.14286,991.1229 C 684.34286,991.1229 679.64286,997.2729 679.64286,1005.7229 C 679.64286,1014.1729 684.34286,1020.3229 692.14286,1020.3229 C 694.14286,1020.3229 695.94286,1019.9229 697.44286,1019.1729 L 693.69286,1016.2729 L 696.14286,1013.2729 z"
+       id="path5" />
+  </g>
+</svg>

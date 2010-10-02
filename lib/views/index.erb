@@ -12,7 +12,7 @@
   <div class="container">
 
     <div id="header" class="span-24 last">
-      <img src="C:\Users\cacciatc\Desktop\Pi-symbol.svg" style="height: 128px; width: 128px" /><img src="C:\Users\cacciatc\Desktop\q.svg" style="10px" /></h1>
+      <img src="media\Pi-symbol.svg" style="height: 128px; width: 128px" /><img src="media\q.svg" style="10px" /></h1>
       <div id="subheader" class="span-24 last"><div class="prepend-4"><h3 class="alt"><em>priority-idea-queue</em></h3></div></div>
       <hr />
     </div>
@@ -33,11 +33,11 @@
         <!-- <ul><li><span class="ss_sprite ss_award_star_gold_3"></span><strong>pi-queue</strong> - <em>A priority idea queue</em> | <a href=''>url</a> | #truce_tringsteen (11-10-10)</li></ul>
         --></div></div>
 
-      <div class="dialog">
+      <!--<div class="dialog">
        <div class="content">
         <div class="t"></div>
         <h1 align="center">Pending</h1>
-        <hr />
+        <hr />-->
         <%= 
             Project.list_pending.inject('<ul id="pending_project">') do |str,p| 
               str += "<li id=\"#{p.mid}\"><span class=\"ss_sprite ss_clock\"></span><strong>#{p.name}</strong> - <em>#{p.desc}</em> | <a href=\"#{p.url}\">site</a> | \##{p.submitter} (#{p.created_at.asctime})</li>"
@@ -45,7 +45,7 @@
         %>
         <!--<ul><li><span class="ss_sprite ss_clock"></span><strong>pi-queue</strong> - <em>A priority idea queue</em> | <a href=''>url</a> | #truce_tringsteen (11-10-10)</li></ul>
       
-      --></div></div>
+      </div></div>-->
 
        <div class="dialog">
        <div class="content">
