@@ -8,11 +8,11 @@ configure do
     include DataMapper::Resource
     DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite3://pi_projects.db')
     property :mid, Serial
-    property :name, String,      :required=>true, :default=>''
-    property :desc, String,      :required=>true, :default=>''
-    property :long_desc, String, :required=>true, :default=>''
-    property :submitter, String, :required=>true, :default=>''
-    property :probs_techs,String, :required=>true, :default=>''
+    property :name, String,      :required=>true
+    property :desc, String,      :required=>tru
+    property :long_desc, String, :required=>true
+    property :submitter, String, :required=>true
+    property :probs_techs,String, :required=>true
     property :url, String, :default=>''
     property :rank, Integer
     property :created_at, DateTime
@@ -42,7 +42,7 @@ configure do
       end
     end
   end
-  DataMapper.auto_upgrade!
+  DataMapper.auto_migrate!
 end
 
 use Rack::Auth::Basic do |username, password|
