@@ -7,6 +7,7 @@ configure do
   class Project
     include DataMapper::Resource
     DataMapper.setup(:default, ENV['DATABASE_URL'])
+    DataMapper::Logger.new($stdout, :debug)
     property :mid, Serial
     property :name, String    
     property :desc, String     
