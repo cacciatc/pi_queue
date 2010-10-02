@@ -9,7 +9,7 @@ configure do
     DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite3://pi_projects.db')
     property :mid, Serial
     property :name, String,      :required=>true
-    property :desc, String,      :required=>tru
+    property :desc, String,      :required=>true
     property :long_desc, String, :required=>true
     property :submitter, String, :required=>true
     property :probs_techs,String, :required=>true
