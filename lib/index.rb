@@ -8,12 +8,12 @@ configure do
     include DataMapper::Resource
     DataMapper.setup(:default, ENV['DATABASE_URL'])
     property :mid, Serial
-    property :name, String,      :required=>true
-    property :desc, String,      :required=>true
-    property :long_desc, String, :required=>true
-    property :submitter, String, :required=>true
-    property :probs_techs,String, :required=>true
-    property :url, String, :default=>''
+    property :name, String,     
+    property :desc, String,      
+    property :long_desc, String,
+    property :submitter, String, 
+    property :probs_techs,String, 
+    property :url, String
     property :rank, Integer
     property :created_at, DateTime
     
