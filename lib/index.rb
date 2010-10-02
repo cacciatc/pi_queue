@@ -1,12 +1,14 @@
 require 'rubygems'
 require 'sinatra'
 require 'datamapper'
-require 'dm-postgres-adapter'
+#require 'dm-postgres-adapter'
+#require 'do_sqlite3'
 
 configure do
   class Project
     include DataMapper::Resource
-   DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite3://pi_projects.db')
+    #DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite3://pi_projects.db')
+    DataMapper.setup(:default, 'sqlite3::memory:')
     property :mid, Serial
     property :name, String,      :required=>true, :default=>''
     property :desc, String,      :required=>true, :default=>''
