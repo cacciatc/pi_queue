@@ -6,7 +6,7 @@ require 'dm-postgres-adapter'
 configure do
   class Project
     include DataMapper::Resource
-    DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite3://pi_projects.db')
+    DataMapper.setup(:default, ENV['DATABASE_URL'])
     property :mid, Serial
     property :name, String,      :required=>true
     property :desc, String,      :required=>true
