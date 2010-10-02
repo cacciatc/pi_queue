@@ -33,19 +33,19 @@
         <!-- <ul><li><span class="ss_sprite ss_award_star_gold_3"></span><strong>pi-queue</strong> - <em>A priority idea queue</em> | <a href=''>url</a> | #truce_tringsteen (11-10-10)</li></ul>
         --></div></div>
 
-      <!--<div class="dialog">
+      <div class="dialog">
        <div class="content">
         <div class="t"></div>
         <h1 align="center">Pending</h1>
-        <hr />-->
+        <hr />
         <%= 
-            Project.list_pending.inject('<ul id="pending_project">') do |str,p| 
+            Project.list_pending.inject('<ul id="pending_projects">') do |str,p| 
               str += "<li id=\"#{p.mid}\"><span class=\"ss_sprite ss_clock\"></span><strong>#{p.name}</strong> - <em>#{p.desc}</em> | <a href=\"#{p.url}\">site</a> | \##{p.submitter} (#{p.created_at.asctime})</li>"
             end + '</ul>'
         %>
         <!--<ul><li><span class="ss_sprite ss_clock"></span><strong>pi-queue</strong> - <em>A priority idea queue</em> | <a href=''>url</a> | #truce_tringsteen (11-10-10)</li></ul>
-      
-      </div></div>-->
+      -->
+      </div></div>
 
        <div class="dialog">
        <div class="content">
@@ -53,7 +53,7 @@
         <h1 align="center">Implemented</h1>
                 <hr />
                         <%= 
-            Project.list_implemented.inject('<ul id="implemented_project">') do |str,p| 
+            Project.list_implemented.inject('<ul id="implemented_projects">') do |str,p| 
               str += "<li id=\"#{p.mid}\"><span class=\"ss_sprite ss_accept\"></span><strong>#{p.name}</strong> - <em>#{p.desc}</em> | <a href=\"#{p.url}\">site</a> | \##{p.submitter} (#{p.created_at.asctime})</li>"
             end + '</ul>'
         %>
@@ -66,7 +66,7 @@
         <h1 align="center">Deleted</h1>
                 <hr />
                  <%= 
-            Project.list_deleted.inject('<ul id="deleted_project">') do |str,p| 
+            Project.list_deleted.inject('<ul id="deleted_projects">') do |str,p| 
               str += "<li id=\"#{p.mid}\"><span class=\"ss_sprite ss_cross\"></span><strong>#{p.name}</strong> - <em>#{p.desc}</em> | <a href=\"#{p.url}\">site</a> | \##{p.submitter} (#{p.created_at.asctime})</li>"
             end + '</ul>'
         %>
