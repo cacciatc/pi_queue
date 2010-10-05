@@ -7,9 +7,45 @@
   <script src="js/builder.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/effects.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/dragdrop.js" type="text/javascript" charset="utf-8"></script>
-
+  <script src="js/jquery-1.4.2.js"></script>
+  
+	<script src="js/ui/jquery.ui.core.js"></script> 
+	<script src="js/ui/jquery.ui.widget.js"></script> 
+	<script src="js/ui/jquery.ui.mouse.js"></script> 
+	<script src="js/ui/jquery.ui.draggable.js"></script> 
+	<script src="js/ui/jquery.ui.position.js"></script> 
+	<script src="js/ui/jquery.ui.resizable.js"></script> 
+	<script src="js/ui/jquery.ui.dialog.js"></script> 
+	<script src="js/ui/jquery.effects.core.js"></script> 
+	<script src="js/ui/jquery.effects.blind.js"></script> 
+	<script src="js/ui/jquery.effects.explode.js"></script> 
 </head>
 <body>
+<script>
+  // increase the default animation speed to exaggerate the effect
+	$.fx.speeds._default = 1000;
+	$(function() {
+		$( "#dialog" ).dialog({
+			autoOpen: false,
+			show: "blind",
+			hide: "explode"
+		});
+ 
+		$( "#opener" ).click(function() {
+			$( "#dialog" ).dialog( "open" );
+			return false;
+		});
+	});
+	</script> 
+<div class="demo"> 
+ 
+<div id="dialog" title="Basic dialog"> 
+	<p>This is an animated dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p> 
+</div> 
+ 
+<button id="opener">Open Dialog</button> 
+ 
+</div>
   <div class="container">
 
     <div id="header" class="span-24 last">
@@ -17,7 +53,6 @@
       <div id="subheader" class="span-24 last"><div class="prepend-4"><h3 class="alt"><em>priority-idea-queue</em></h3></div></div>
       <hr />
     </div>
-  
   
     <div id="projects" class="span-24">
 
@@ -108,7 +143,6 @@
         );
       </script>
      
-
         <form name="create_new_project" method="post" class="inline">
         <fieldset>
           <legend>Add a New Project</Legend>
