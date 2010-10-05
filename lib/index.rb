@@ -1,12 +1,16 @@
 require 'rubygems'
 require 'sinatra'
 require 'datamapper'
-require 'dm-postgres-adapter'
+if ENV['DATABASE_URL']
+  require 'dm-postgres-adapter'
+else
+  require 'dm-sqlite-adapter'
+end
 
 configure do
   class Project
     include DataMapper::Resource
-    DataMapper.setup(:default, ENV['DATABASE_URL'])
+    DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite://tmp.db')
     property :mid, Serial
     property :name, Text    
     property :desc, Text     
