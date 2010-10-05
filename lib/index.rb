@@ -59,7 +59,9 @@ get '/' do
 end
 
 post '/update_rank' do
-  params['data'].split('&').inject(rank = 2) do |rank,item|
+  projs = params['data'].split('&')
+  rank = projs.size == 1 ? 1 : 2
+  projs.inject(rank) do |rank,item|
     mid = item.split('=').last.to_i
     p = Project.get(mid)
     p.rank = rank
@@ -82,8 +84,6 @@ post '/update_implemented' do
 end
 
 post '/update_deleted' do
-  puts params['data']
-  STDOUT.flush
   params['data'].split('&').each do |item|
     mid = item.split('=').last.to_i
     p = Project.get(mid)

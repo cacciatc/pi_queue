@@ -29,7 +29,7 @@
         <p></p>
             <%= 
             Project.current.inject('<ul id="current_project">') do |str,p| 
-              str += "<li id=\"#{p.mid}\"><span class=\"ss_sprite ss_award_star_gold_3\"></span><strong>#{p.name}</strong> - <em>#{p.desc}</em> | <a href=\"#{p.url}\">site</a> | \##{p.submitter} (#{p.created_at.asctime}) <form name=\"implement\" action=\"update_current\" method=\"post\" class=\"inline\"><input type=\"submit\" value=\"Implement\" /></form></li>"
+              str += "<li id=\"current_project_#{p.mid}\"><span class=\"ss_sprite ss_award_star_gold_3\"></span><strong>#{p.name}</strong> - <em>#{p.desc}</em> | <a href=\"#{p.url}\">site</a> | \##{p.submitter} (#{p.created_at.asctime}) <form name=\"implement\" action=\"update_current\" method=\"post\" class=\"inline\"><input type=\"submit\" value=\"Implement\" /></form></li>"
             end + '<br /></ul>'
             %>
         </div></div>
@@ -42,7 +42,7 @@
         <p></p>
         <%= 
             Project.list_pending.inject('<ul id="pending_projects">') do |str,p| 
-              str += "<li id=\"#{p.mid}\"><strong>#{p.name}</strong> - <em>#{p.desc}</em> | <a href=\"#{p.url}\">site</a> | \##{p.submitter} (#{p.created_at.asctime})</li>"
+              str += "<li id=\"pending_projects_#{p.mid}\"><strong>#{p.name}</strong> - <em>#{p.desc}</em> | <a href=\"#{p.url}\">site</a> | \##{p.submitter} (#{p.created_at.asctime})</li>"
             end + '<br /></ul>'
         %>
       </div></div>
@@ -55,7 +55,7 @@
                 <p></p>
                         <%= 
             Project.list_implemented.inject('<ul id="implemented_projects">') do |str,p| 
-              str += "<li id=\"#{p.mid}\"><strong>#{p.name}</strong> - <em>#{p.desc}</em> | <a href=\"#{p.url}\">site</a> | \##{p.submitter} (#{p.created_at.asctime})</li>"
+              str += "<li id=\"implemented_projects_#{p.mid}\"><strong>#{p.name}</strong> - <em>#{p.desc}</em> | <a href=\"#{p.url}\">site</a> | \##{p.submitter} (#{p.created_at.asctime})</li>"
             end + '<br /></ul>'
         %>
         </div></div>
@@ -68,11 +68,10 @@
                 <p></p>
                  <%= 
             Project.list_deleted.inject('<ul id="deleted_projects">') do |str,p| 
-              str += "<li id=\"#{p.mid}\"><strong>#{p.name}</strong> - <em>#{p.desc}</em> | <a href=\"#{p.url}\">site</a> | \##{p.submitter} (#{p.created_at.asctime})</li>"
+              str += "<li id=\"deleted_projects_#{p.mid}\"><strong>#{p.name}</strong> - <em>#{p.desc}</em> | <a href=\"#{p.url}\">site</a> | \##{p.submitter} (#{p.created_at.asctime})</li>"
             end + '<br /></ul>'
         %>
-        <!--<ul><li><span class="ss_sprite ss_cross"></span><strong>pi-queue</strong> - <em>A priority idea queue</em> | <a href=''>url</a> | #truce_tringsteen (11-10-10)</li></ul>
-      --></div></div>
+        </div></div>
 
       <script type="text/javascript" charset="utf-8">
         Sortable.create('pending_projects', {
