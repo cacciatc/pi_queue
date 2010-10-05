@@ -98,7 +98,7 @@
         });
         Sortable.create("deleted_projects", {
          containment: ["implemented_projects","deleted_projects","pending_projects"],
-          dropOnEmpty: true,
+         dropOnEmpty: true,
          onUpdate: function() {
             new Ajax.Request("/update_deleted", {
                 method: "post",
