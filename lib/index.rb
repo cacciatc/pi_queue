@@ -8,6 +8,7 @@ else
 end
 
 configure do
+  
   class Project
     include DataMapper::Resource
     DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite://tmp.db')
