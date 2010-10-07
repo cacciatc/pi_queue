@@ -48,7 +48,7 @@ configure do
       end
     end
   end
-  DataMapper.auto_migrate!
+  DataMapper.auto_upgrade!
 end
 
 use Rack::Auth::Basic do |username, password|
