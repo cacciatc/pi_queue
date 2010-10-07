@@ -1,1 +1,2 @@
-db_backups/*
+*.db
+db_backups
