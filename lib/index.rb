@@ -17,7 +17,7 @@ configure do
     property :desc, Text     
     property :long_desc, Text
     property :submitter, Text
-    property :probs_techs,Text
+    property :probs_techs, Text
     property :url, Text
     property :rank, Integer
     property :created_at, DateTime
@@ -47,7 +47,7 @@ configure do
       end
     end
   end
-  DataMapper.auto_upgrade!
+  DataMapper.auto_migrate!
 end
 
 use Rack::Auth::Basic do |username, password|
