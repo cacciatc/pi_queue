@@ -59,6 +59,28 @@ get '/' do
   erb :index
 end
 
+get '/project/:mid' do |mid|
+  @p = Project.get(mid.to_i)
+  if @p != nil
+    erb :project
+  else
+    'project does not exist'
+  end
+end
+
+post '/project/:mid' do |mid|
+  p = params['post']
+  proj = Project.get(mid.to_i)
+  proj.name = p['project_name']
+  proj.desc = p['desc']
+  proj.probs_techs = p['probs_techs']
+  proj.url = p['url']
+  proj.submitter = p['submitter']
+  proj.long_desc = p['long_desc']
+  proj.save
+  redirect '/'
+end
+
 post '/update_rank' do
   projs = params['data'].split('&')
   rank = projs.size == 1 ? 1 : 2

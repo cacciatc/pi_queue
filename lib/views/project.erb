@@ -1,0 +1,61 @@
+<head>
+  <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">	
+  <link rel="stylesheet" href="/css/dialog/dialog.css" media="screen" />
+  <!--[if lt IE 8]><link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+</head>
+<body>
+  <div class="container">
+  
+   <div id="header" class="span-24 last">
+      <img src="\media\Pi-symbol.svg" style="height: 128px; width: 128px" /><img src="\media\q.svg" style="10px" />
+      <div id="subheader" class="span-24 last"><div class="prepend-4"><h3 class="alt"><em>priority-idea-queue</em></h3></div></div>
+      <hr />
+    </div>
+
+    <div id="project" class="span-24">
+      <form name="edit_project" method="post" class="inline">
+        <fieldset>
+          <legend>Edit Project</Legend>
+          <div class="span-11 colborder">
+          <p>
+            <label for="post[project_name]">Name:</label><br />
+            <%= "<input type=\"text\" name=\"post[project_name]\" id=\"post[project_name]\" value=\"#{@p.name}\" />" %>
+          </p>
+          
+          <p>
+            <label for="post[desc]">Short Description:</label><br />
+            <%= "<input class=\"span-11\" type=\"text\" name=\"post[desc]\" id=\"post[desc]\" value=\"#{@p.desc}\"/>" %>
+          </p>
+          
+          <p>
+            <label for="post[probs_techs]">Probs & Techs:</label><br />
+            <%= "<textarea class=\"span-11\" name=\"post[probs_techs]\" id=\"post[probs_techs]\">#{@p.probs_techs}</textarea>" %>
+          </p>
+          <p>
+            <input type="submit" value="Submit" />
+            <input type="reset" value="Cancel" />
+          </p>
+          </div>
+          
+          <div class="span-11 last">
+          <p>
+            <label for="post[url]">Link:</label><br />
+            <%= "<input class=\"span-9\" type=\"text\" name=\"post[url]\" id=\"post[url]\" value=\"#{@p.url}\"/>" %>
+          </p>
+          
+          <p>
+            <label for="post[submitter]">Submitter:</label><br />
+            <%= "<input type=\"text\" name=\"post[submitter]\" id=\"post[submitter]\" value=\"#{@p.submitter}\"/>" %>
+          </p>
+          
+          <p>
+            <label for="post[long_desc]">Description:</label><br />
+            <%= "<textarea class=\"span-11\" name=\"post[long_desc]\" id=\"post[long_desc]\">#{@p.long_desc}</textarea>" %>
+          </p>
+          </div>
+      </fieldset>
+      </form>
+    </div>
+  </div>
+</body>
