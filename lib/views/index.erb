@@ -2,11 +2,23 @@
   <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">
   <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print">	
   <link rel="stylesheet" href="/css/dialog/dialog.css" media="screen" />
+  <link rel="stylesheet" href="/css/buttons/github_buttons.css" media="screen" />
   <!--[if lt IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
   <script src="js/prototype.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/builder.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/effects.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/dragdrop.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.5/dojo/dojo.xd.js" type="text/javascript"></script>
+  
+  <script type="text/javascript" charset="utf-8">
+  /* Dojo Toolkit */ 
+  dojo.addOnLoad(function() { 
+    var buttons = dojo.query('a.minibutton'); 
+    buttons.connect('onmousedown',function() { dojo.addClass(this,'mousedown'); }); 
+    buttons.connect('onblur',function() { dojo.removeClass(this,'mousedown'); }); 
+    buttons.connect('onmouseup',function() { dojo.removeClass(this,'mousedown'); }); 
+  }); 
+  </script>
 </head>
 <body>
   <div class="container">
@@ -27,7 +39,7 @@
         <p></p>
             <%= 
             Project.current.inject('<ul id="current_project">') do |str,p| 
-              str += "<li id=\"current_project_#{p.mid}\"><span class=\"ss_sprite ss_award_star_gold_3\"></span><table><tr><strong>#{p.name}</strong> - <em>#{p.desc}</em> | <a href=\"#{p.url}\">site</a> | \##{p.submitter} (#{p.created_at.asctime}) <form name=\"implement\" action=\"update_current\" method=\"post\" class=\"inline\"><input type=\"submit\" value=\"Implement\" /></form><form name=\"view\\update\" action=\"project\\#{p.mid}\" method=\"get\" class=\"inline\"><input type=\"submit\" value=\"view\\update\" /></form></table></tr></li>"
+              str += "<li id=\"current_project_#{p.mid}\"><span class=\"ss_sprite ss_award_star_gold_3\"></span><strong>#{p.name}</strong> - <em>#{p.desc}</em> | <a href=\"#{p.url}\">site</a> | \##{p.submitter} (#{p.created_at.asctime}) <a href=\"update_current\" class=\"minibutton\"><span>Implement!</span></a> | <a href=\"project\\#{p.mid}\" class=\"minibutton\"><span>View</span></a></li>"
             end + '<br /></ul>'
             %>
         </div></div>
@@ -40,7 +52,7 @@
         <p></p>
         <%= 
             Project.list_pending.inject('<ul id="pending_projects">') do |str,p| 
-              str += "<li id=\"pending_projects_#{p.mid}\"><table><tr><strong>#{p.name}</strong> - <em>#{p.desc}</em> | <a href=\"#{p.url}\">site</a> | \##{p.submitter} (#{p.created_at.asctime}) <form name=\"view\\update\" action=\"project\\#{p.mid}\" method=\"get\" class=\"inline\"><input type=\"submit\" value=\"view\\update\" /></form></table></tr></li>"
+              str += "<li id=\"pending_projects_#{p.mid}\"><strong>#{p.name}</strong> - <em>#{p.desc}</em> | <a href=\"#{p.url}\">site</a> | \##{p.submitter} (#{p.created_at.asctime}) <a href=\"project\\#{p.mid}\" class=\"minibutton\"><span>View</span></a></li>"
             end + '<br /></ul>'
         %>
       </div></div>
@@ -53,7 +65,7 @@
                 <p></p>
                         <%= 
             Project.list_implemented.inject('<ul id="implemented_projects">') do |str,p| 
-              str += "<li id=\"implemented_projects_#{p.mid}\"><table><tr><strong>#{p.name}</strong> - <em>#{p.desc}</em> | <a href=\"#{p.url}\">site</a> | \##{p.submitter} (#{p.created_at.asctime}) <form name=\"view\\update\" action=\"project\\#{p.mid}\" method=\"get\" class=\"inline\"><input type=\"submit\" value=\"view\\update\" /></form></table></tr></li>"
+              str += "<li id=\"implemented_projects_#{p.mid}\"><strong>#{p.name}</strong> - <em>#{p.desc}</em> | <a href=\"#{p.url}\">site</a> | \##{p.submitter} (#{p.created_at.asctime}) <a href=\"project\\#{p.mid}\" class=\"minibutton\"><span>View</span></a></li>"
             end + '<br /></ul>'
         %>
         </div></div>
@@ -66,7 +78,7 @@
                 <p></p>
                  <%= 
             Project.list_deleted.inject('<ul id="deleted_projects">') do |str,p| 
-              str += "<li id=\"deleted_projects_#{p.mid}\"><table><tr><strong>#{p.name}</strong> - <em>#{p.desc}</em> | <a href=\"#{p.url}\">site</a> | \##{p.submitter} (#{p.created_at.asctime}) <form name=\"view\\update\" action=\"project\\#{p.mid}\" method=\"get\" class=\"inline\"><input type=\"submit\" value=\"view\\update\" /></form></table></tr></li>"
+              str += "<li id=\"deleted_projects_#{p.mid}\"><strong>#{p.name}</strong> - <em>#{p.desc}</em> | <a href=\"#{p.url}\">site</a> | \##{p.submitter} (#{p.created_at.asctime}) <a href=\"project\\#{p.mid}\" class=\"minibutton\"><span>View</span></a></li>"
             end + '<br /></ul>'
         %>
         </div></div>
@@ -125,8 +137,8 @@
             <textarea class="span-11" name="post[probs_techs]" id="post[probs_techs]"></textarea>
           </p>
           <p>
-            <input type="submit" value="Submit" />
-            <input type="reset" value="Cancel" onClick="this.form.reset()" />
+            <a href="javascript: document.create_new_project.submit();" class="minibutton"><span>Submit</span></a>
+            <a href="javascript: document.create_new_project.reset();" class="minibutton"><span>Cancel</span></a>
           </p>
           </div>
           

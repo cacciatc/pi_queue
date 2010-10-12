@@ -117,7 +117,7 @@ post '/update_deleted' do
   end
 end
 
-post '/update_current' do
+get '/update_current' do
   p = Project.all(:rank => 1).first
   p.is_implemented = true
   p.rank = -1

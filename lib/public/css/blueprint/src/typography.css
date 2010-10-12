@@ -64,7 +64,7 @@ pre,code,tt { font: 1em 'andale mono', 'lucida console', monospace; line-height:
 -------------------------------------------------------------- */
 
 li ul, 
-li ol       { margin:0 1.5em; list-style-type:none;}
+li ol       { margin: 0 1.5em; list-style-type:none;}
 ul, ol      { margin: 0 1.5em 1.5em 1.5em; list-style-type:none;}
 
 
